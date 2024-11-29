@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titulo.todosCoches}"></title>
+</head>
+<body>
+<h1 th:if="${coches.isEmpty()}" th:text="#{message.noHayCoches}"></h1>
+<div th:unless="${coches.isEmpty()}">
+    <table style="text-align: center">
+        <tr>
+            <th th:text="#{coche.marca}"></th>
+            <th th:text="#{coche.modelo}"></th>
+            <th th:text="#{coche.anyo}"></th>
+            <th th:text="#{coche.precio}"></th>
+            <th th:text="#{coche.fuenteEnergia}"></th>
+        </tr>
+        <tr th:each="item: ${coches}">
+            <p th:if="${coches.isEmpty()}">No hay coches</p>
+            <td th:text="${item.getMarca()}"></td>
+            <td th:text="${item.getModelo()}"></td>
+            <td th:text="${item.getAno()}"></td>
+            <td th:text="${item.getPrecio()}"></td>
+            <td th:text="${item.getFuenteEnergia()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <div th:fragment="idioma">
     <form method="get" action="/idioma">
         <select name="idioma" id="idioma" required> 
-            <option value=""><span th:text="#{titulo.idioma}"></option>
+            <option value=""><span th:text="#{titulo.idioma}"></span></option>
             <option th:each="i : ${idiomas}" th:value="${i}" th:text="${i}"></option>
         </select>
         <button type="submit"><span th:text="#{boton.idioma}"></span></button>

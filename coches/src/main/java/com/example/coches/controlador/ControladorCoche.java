@@ -20,24 +20,32 @@ import jakarta.validation.Valid;
 
 @Controller
 public class ControladorCoche {
-	
-	@Autowired
-	private ServicioCoches servicioCoches;
-	
-	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("mensaje", " DWES :: RA3");
-		model.addAttribute("idiomas", Idioma.values());
-		return "index";
-	}
 
-	 @GetMapping("/idioma")
-	 public String idioma(@RequestParam String idioma) {
-		 if(idioma.equals(Idioma.EN.toString())) {
-			 return "redirect:/?lang=en";
-		 }else {
-			 return "redirect:/?lang=es";
-		 }
-	 }
-	 
+    @Autowired
+    private ServicioCoches servicioCoches;
+
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("mensaje", " DWES :: RA3");
+        model.addAttribute("idiomas", Idioma.values());
+        return "index";
+    }
+
+    @GetMapping("/idioma")
+    public String idioma(@RequestParam String idioma) {
+        if (idioma.equals(Idioma.EN.toString())) {
+            return "redirect:/?lang=en";
+        } else {
+            return "redirect:/?lang=es";
+        }
+    }
+
+    @GetMapping("/coches")
+    public String coches(Model model) {
+        List<Coche> listaCoche = servicioCoches.obtenerTodos();
+        model.addAttribute("coches", listaCoche);
+        return "coches";
+    }
+
+
 }
